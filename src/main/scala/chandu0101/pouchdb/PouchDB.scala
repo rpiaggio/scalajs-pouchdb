@@ -316,7 +316,7 @@ object PouchDBMapReduce {
 }
 
 @js.native
-@JSImport("PouchDB", JSImport.Namespace, "PouchDB")
+@JSImport("pouchdb-browser", JSImport.Default, "PouchDB")
 class PouchDB(name: String = ???, options: PouchDBOptions = ???) extends js.Object with PouchDBFindPlugin {
 
   var _db_name: String = js.native
@@ -368,7 +368,7 @@ class PouchDB(name: String = ???, options: PouchDBOptions = ???) extends js.Obje
 }
 
 @js.native
-@JSImport("PouchDB", JSImport.Namespace, "PouchDB")
+@JSImport("pouchdb-browser", JSImport.Default, "PouchDB")
 object PouchDB extends EventEmitter {
 
   def replicate(source: String, target: String, options: PouchDBReplicateOptions = ???): ChangesEventEmitter = js.native
