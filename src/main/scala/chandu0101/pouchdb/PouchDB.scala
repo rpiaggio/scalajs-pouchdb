@@ -1,13 +1,12 @@
 package chandu0101.pouchdb
 
 import chandu0101.pouchdb.plugins.PouchDBFindPlugin
+
 import scala.scalajs.js
 import scala.scalajs.js.`|`
-import scala.scalajs.js.Dynamic.{literal => json}
-import scala.scalajs.js.annotation.{ScalaJSDefined, JSName}
-import scala.scalajs.js.{Array => JArray, Promise, UndefOr, undefined}
+import scala.scalajs.js.annotation.JSImport
+import scala.scalajs.js.{Promise, UndefOr, undefined}
 
-@ScalaJSDefined
 trait PouchDBAjaxOptions extends js.Object {
   val timeout: UndefOr[Double]
   val headers: UndefOr[js.Dictionary[js.Any]]
@@ -24,7 +23,6 @@ object PouchDBAjaxOptions {
       skip_setup = skip_setup, cache = cache).asInstanceOf[PouchDBAjaxOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBAuthOptions extends js.Object {
   val username: UndefOr[String]
   val password: UndefOr[String]
@@ -35,8 +33,6 @@ object PouchDBAuthOptions {
     js.Dynamic.literal(username = username, password = password).asInstanceOf[PouchDBAuthOptions]
 }
 
-
-@ScalaJSDefined
 trait PouchDBOptions extends js.Object {
   val name: UndefOr[String]
   val adapter: UndefOr[String]
@@ -55,7 +51,6 @@ object PouchDBOptions {
       db = db, auto_compaction = auto_compaction).asInstanceOf[PouchDBOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBDestroyOptions extends js.Object {
   val ajax: UndefOr[PouchDBAjaxOptions]
 }
@@ -65,7 +60,6 @@ object PouchDBDestroyOptions {
     js.Dynamic.literal(ajax = ajax).asInstanceOf[PouchDBDestroyOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBAllDocsOptions extends js.Object {
   val include_docs: UndefOr[Boolean]
   val startkey: UndefOr[String]
@@ -91,7 +85,6 @@ object PouchDBAllDocsOptions {
       key = key, keys = keys).asInstanceOf[PouchDBAllDocsOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBAllDocsResponse extends js.Object {
   val total_rows: Int
   val offset: Int
@@ -109,14 +102,12 @@ trait ChangesEventEmitter extends EventEmitter {
   def cancel(): Unit = js.native
 }
 
-@ScalaJSDefined
 trait PouchDBError extends js.Object {
   val status: Int
   val name: String
   val message: String
 }
 
-@ScalaJSDefined
 trait EventInfo extends js.Object {
   val doc_write_failures: Int
   val docs_read: Int
@@ -127,19 +118,16 @@ trait EventInfo extends js.Object {
   val start_time: String
 }
 
-@ScalaJSDefined
 trait OnChangeInfo extends EventInfo {
   val docs: js.Array[js.Object]
 }
 
-@ScalaJSDefined
 trait OnCompleteInfo extends EventInfo {
   val end_time: String
   val status: String
 }
 
 object ChangesEventEmitter {
-
   implicit class ChangesEventEmitterEvents(val self: ChangesEventEmitter) extends AnyVal {
     def onChange(listener: js.Function1[OnChangeInfo, Any]): self.type = self.on("change", listener)
     def onComplete(listener: js.Function1[OnCompleteInfo, Any]): self.type = self.on("complete", listener)
@@ -150,10 +138,8 @@ object ChangesEventEmitter {
     def onCreated(listener: js.Function1[String, Any]): self.type = self.on("created", listener)
     def onDestroyed(listener: js.Function1[String, Any]): self.type = self.on("destroyed", listener)
   }
-
 }
 
-@ScalaJSDefined
 trait PouchDBChangesOptions extends js.Object {
   val live: UndefOr[Boolean]
   val include_docs: UndefOr[Boolean]
@@ -187,7 +173,6 @@ object PouchDBChangesOptions {
       batch_size = batch_size, style = style).asInstanceOf[PouchDBChangesOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBReplicateOptions extends js.Object {
   val live: UndefOr[Boolean]
   val retry: UndefOr[Boolean]
@@ -221,7 +206,6 @@ trait Replicate extends js.Object {
   def from(remoteDB: PouchDB | String, options: PouchDBReplicateOptions = ???): ChangesEventEmitter = js.native
 }
 
-@ScalaJSDefined
 trait PouchDBQueryOptions extends js.Object {
   val fun: UndefOr[js.Function]
   val reduce: UndefOr[js.Function | String]
@@ -259,7 +243,6 @@ trait PouchDBDebug extends js.Object {
   def disable(): Unit = js.native
 }
 
-@ScalaJSDefined
 trait PouchDBGetOptions extends js.Object {
   val rev: UndefOr[String]
   val revs: UndefOr[Boolean]
@@ -278,7 +261,6 @@ object PouchDBGetOptions {
       attachments = attachments, ajax = ajax).asInstanceOf[PouchDBGetOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBInfo extends js.Object {
   val db_name: String
   val doc_count: Int
@@ -290,20 +272,17 @@ trait PouchDBInfo extends js.Object {
   val backend_adapter: UndefOr[String]
 }
 
-@ScalaJSDefined
 trait PouchDBUpdateDocResponse extends js.Object {
   val ok: Boolean
   val id: String
   val rev: String
 }
 
-@ScalaJSDefined
 trait PouchDBEntity extends js.Object {
   val _id: String
   val _rev: String
 }
 
-@ScalaJSDefined
 trait PouchDBCompactOptions extends js.Object {
   val interval: UndefOr[Int]
 }
@@ -313,7 +292,6 @@ object PouchDBCompactOptions {
     js.Dynamic.literal(interval = interval).asInstanceOf[PouchDBCompactOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBBulkGetOptions extends js.Object {
   val docs: js.Array[js.Object]
   val revs: UndefOr[Boolean]
@@ -327,7 +305,6 @@ object PouchDBBulkGetOptions {
     js.Dynamic.literal(docs = docs, revs = revs, attachments = attachments, binary = binary).asInstanceOf[PouchDBBulkGetOptions]
 }
 
-@ScalaJSDefined
 trait PouchDBMapReduce extends js.Object {
   val map: js.Function0[Unit]
   val reduce: js.Function0[Unit]
@@ -339,7 +316,7 @@ object PouchDBMapReduce {
 }
 
 @js.native
-@JSName("PouchDB")
+@JSImport("PouchDB", JSImport.Namespace, "PouchDB")
 class PouchDB(name: String = ???, options: PouchDBOptions = ???) extends js.Object with PouchDBFindPlugin {
 
   var _db_name: String = js.native
@@ -391,7 +368,7 @@ class PouchDB(name: String = ???, options: PouchDBOptions = ???) extends js.Obje
 }
 
 @js.native
-@JSName("PouchDB")
+@JSImport("PouchDB", JSImport.Namespace, "PouchDB")
 object PouchDB extends EventEmitter {
 
   def replicate(source: String, target: String, options: PouchDBReplicateOptions = ???): ChangesEventEmitter = js.native

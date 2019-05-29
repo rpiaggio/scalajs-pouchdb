@@ -4,13 +4,13 @@ enablePlugins(ScalaJSPlugin)
 
 name := "pouchdb"
 
-version := "2016.8.0-SNAPSHOT"
+version := "2019.6.0"
 
 organization := "com.github.chandu0101.scalajs"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.8"
 
-val scalatestVersion = "3.0.0-M15"
+//val scalatestVersion = "3.0.0-M15"
 
 relativeSourceMaps := true
 
@@ -18,8 +18,13 @@ scalacOptions += "-deprecation"
 
 scalacOptions += "-feature"
 
+scalacOptions += "-P:scalajs:sjsDefinedByDefault"
+
 //======================== Publication Settings =========================\\
 
+publishTo := Some(Resolver.file("file", new File("../mvn-repo")))
+
+/*
 homepage := Some(url("https://github.com/chandu0101/scalajs-pouchdb"))
 licenses +=("Apache-2.0", url("http://opensource.org/licenses/Apache-2.0"))
 
@@ -43,18 +48,18 @@ pomExtra :=
         <name>Chandra Sekhar Kode</name>
       </developer>
     </developers>
-
+*/
 
 //================ Testing settings =====================\\
-libraryDependencies += "org.scalatest" %%% "scalatest" % scalatestVersion % Test
+//libraryDependencies += "org.scalatest" %%% "scalatest" % scalatestVersion % Test
 
 scalaJSStage in Global := FastOptStage
 
-jsDependencies += ProvidedJS / "test-bundle.js" % Test
+//jsDependencies += ProvidedJS / "test-bundle.js" % Test
 
 requiresDOM := true
 
 jsDependencies += RuntimeDOM
 
-jsEnv in Test := new PhantomJS2Env(scalaJSPhantomJSClassLoader.value, addArgs = Seq("--web-security=no"))
+//jsEnv in Test := new PhantomJS2Env(scalaJSPhantomJSClassLoader.value, addArgs = Seq("--web-security=no"))
 //jsEnv in Test := NodeJSEnv().value

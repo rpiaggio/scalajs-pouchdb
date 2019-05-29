@@ -1,3 +1,4 @@
+/*
 import sbt._
 import sbt.Keys._
 import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
@@ -100,3 +101,4 @@ object InBrowserTesting {
   def cross: CrossProject => CrossProject =
     _.jvmConfigure(jvm).jsConfigure(js)
 }
+ */
